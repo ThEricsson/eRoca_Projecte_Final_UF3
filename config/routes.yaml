@@ -6,6 +6,10 @@ kernel:
     resource: ../src/Kernel.php
     type: annotation
 
+app_Home:
+    path: /
+    controller: App\Controller\HomeController::index
+
 app_TaskController:
     path: /tasks
     controller: App\Controller\TaskController::index

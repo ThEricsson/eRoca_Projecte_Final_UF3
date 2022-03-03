@@ -1,0 +1,18 @@
+body {
+    background-color: #c9e9fc;
+}
+
+.main-custom-content {
+    min-height: 70vh;
+    margin: 3em 0 4.69em 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.custom-navbar {
+    border-bottom: 1px solid black;
+}
+
+.custom-footer {
+    border-top: 1px solid black;
+}
