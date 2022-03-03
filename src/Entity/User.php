@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      message = "Només es poden introduir lletres"
      * )
      */
-    private $name = 'NULL';
+    private $name;
 
     /**
      * @var string|null
@@ -55,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      message = "Només es poden introduir lletres"
      * )
      */
-    private $surname = 'NULL';
+    private $surname;
 
     /**
      * @var string|null
@@ -65,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     message = "L'email '{{ value }}' no és un email vàlid."
      * )
      */
-    private $email = 'NULL';
+    private $email;
 
     /**
      * @var string|null
@@ -75,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      message = "La contrasenya es obligatoria"
      * )
      */
-    private $password = 'NULL';
+    private $password;
 
     /**
      * @var \DateTime|null

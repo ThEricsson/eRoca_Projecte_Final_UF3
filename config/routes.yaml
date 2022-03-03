@@ -13,3 +13,10 @@ app_TaskController:
 app_Register:
     path: /register
     controller: App\Controller\UserController::register
+
+login:
+    path: /login
+    controller: App\Controller\UserController::login
+
+logout:
+    path: /logout

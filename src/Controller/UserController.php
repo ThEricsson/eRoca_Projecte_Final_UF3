@@ -8,6 +8,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 use App\Form\RegisterType;
@@ -43,11 +44,24 @@ class UserController extends AbstractController
             
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
-            $entityManager->flush(); //Fer validació de dades
+            $entityManager->flush();
+
+            //return $this->redirectToRoute('/register');
         }
 
         return $this->render('user/register.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    public function login(AuthenticationUtils $authenticationUtils) {
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('user/login.html.twig', [
+            'error' => $error,
+            'lastUsername' => $lastUsername
         ]);
     }
 
