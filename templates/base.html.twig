@@ -24,12 +24,18 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register">Registrar-se</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Iniciar sessió</a>
-            </li>
+            {% if app.user %}
+                <li class="nav-item text-white position-absolute end-0">
+                    Benvingut {{ app.user.username }}! <a class="btn btn-danger mx-2" href="{{ path('logout') }}">Logout</a>
+                </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="register">Registrar-se</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login">Iniciar sessió</a>
+              </li>
+            {% endif %}
         </div>
       </div>
     </nav>

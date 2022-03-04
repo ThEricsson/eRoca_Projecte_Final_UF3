@@ -23,7 +23,7 @@ security:
                 login_path: login
                 check_path: login
                 provider: proveidor
-                default_target_path: tasks
+                default_target_path: app_home
                 always_use_default_target_path: true
             logout:
                 path: /logout

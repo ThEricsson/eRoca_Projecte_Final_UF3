@@ -46,7 +46,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('/register');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('user/register.html.twig', [
@@ -54,15 +54,27 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function login(AuthenticationUtils $authenticationUtils) {
-        $error = $authenticationUtils->getLastAuthenticationError();
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
 
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('user/login.html.twig', [
-            'error' => $error,
-            'lastUsername' => $lastUsername
+            'lastUsername' => $lastUsername, 
+            'error' => $error
         ]);
+    }
+
+
+    public function logout() : void
+    {
+        throw new \Exception('This should never be reached!');
     }
 
     

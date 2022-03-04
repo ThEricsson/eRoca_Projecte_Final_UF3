@@ -6,24 +6,23 @@
 
 <h2>Login</h2>
 
-{% if error %}
+<form method="post" {{path('login')}}>
+    {% if error %}
+        <div class="alert alert-danger my-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-<div class="alert alert-error">
-    {{ error.messagekey|trans(error.messageData, 'security') }}
-</div>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ lastUsername }}" name="_username" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="_password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-{% endif %}
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
 
-<form action="" {{ path ('login') }} mathod="POST"><!-- Envia les dades per get -->
-
-    <label for="username">Email</label>
-    <input class="form-control" type="email" id="username" name="_username" value="{{ lastUsername }}" />
-
-    <label for="password">Contrasenya</label>
-    <input class="form-control" type="password" id="password" name="_password" />
-
-    <div class="clearfix"></div>
-    <input class="btn btn-primary my-2" type="submit" value="Login" />
+    <button class="btn btn-lg btn-primary my-3" type="submit">
+        Sign in
+    </button>
 </form>
 
 {% endblock %}
