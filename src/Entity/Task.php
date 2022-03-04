@@ -26,21 +26,21 @@ class Task
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $title = 'NULL';
+    private $title;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="content", type="text", length=65535, nullable=true, options={"default"="NULL"})
      */
-    private $content = 'NULL';
+    private $content;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="priority", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $priority = 'NULL';
+    private $priority;
 
     /**
      * @var int|null
@@ -54,7 +54,7 @@ class Task
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $createdAt = 'NULL';
+    private $createdAt;
 
     /**
      * @var \User

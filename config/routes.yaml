@@ -6,22 +6,29 @@ kernel:
     resource: ../src/Kernel.php
     type: annotation
 
-app_TaskController:
-    path: /tasks
-    controller: App\Controller\TaskController::index
-
 app_Register:
     path: /register
     controller: App\Controller\UserController::register
 
-app_home:
-    path: /
+app_TaskList:
+    path: /tasks
     controller: App\Controller\HomeController::index
 
 login:
-    path: /login
+    path: /
     controller: App\Controller\UserController::login
-    
 
 logout:
     path: /logout
+
+task_edit:
+    path: /task/edit/{id}
+    controller: App\Controller\TaskController::edit
+
+task_create:
+    path: /task/create
+    controller: App\Controller\TaskController::creation
+
+task_detail:
+    path: /task/detail/{id}
+    controller: App\Controller\TaskController::detail

@@ -21,6 +21,11 @@
                 <td>{{task.getTitle}}</td>
                 <td>{{task.getPriority}}</td>
                 <td>{{task.getHours}}</td>
+                <td>
+                    <a href="{{ path('task_detail', {'id':task.id} )}}" class="btn btn-success">Show</a>
+                    <a href="{{ path('task_edit', {'id':task.id} )}}" class="btn btn-warning" >Edit</a>
+                    <button class="btn btn-danger" >Delete</button>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
