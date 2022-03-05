@@ -23,7 +23,7 @@ class TaskType extends AbstractType {
                 ])
                 ->add('hours', IntegerType::class)
                 ->add('submit',SubmitType::class,[
-                    'label' => 'Registrar usuari'
+                    'label' => 'Crear tasca'
                 ]);
                 
     }

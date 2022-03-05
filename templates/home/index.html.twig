@@ -25,7 +25,7 @@
                     {% if userData.getId == task.getUser.getId %}
                         <a href="{{ path('task_detail', {'id':task.id} )}}" class="btn btn-success">Show</a>
                         <a href="{{ path('task_edit', {'id':task.id} )}}" class="btn btn-warning" >Edit</a>
-                        <button class="btn btn-danger" >Delete</button>
+                        <a href="{{ path('task_delete', {'id':task.id} )}}" class="btn btn-danger" >Delete</a>
                     {% else %}
                         <a href="{{ path('task_detail', {'id':task.id} )}}" class="btn btn-success">Show</a>
                     {% endif %}

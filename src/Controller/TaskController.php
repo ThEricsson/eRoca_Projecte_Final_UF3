@@ -45,7 +45,7 @@ class TaskController extends AbstractController
 
     public function detail(Task $task){
         if (!$task){
-            return $this->redirectToRoute('tasks');
+            return $this->redirectToRoute('app_TaskList');
         } else {
             return $this->render('task/detail.html.twig', [
                 'task' => $task
@@ -78,8 +78,16 @@ class TaskController extends AbstractController
         ]);
     }
 
-    public function delete(ManagerRegistry $doctrine){
-        $entityManager = $doctrine->getManager();
+    public function delete(ManagerRegistry $doctrine, UserInterface $user, Task $task){
+        if (!$user || ($user->getId() != $task->getUser()->getId())){
+            return $this->redirectToRoute('app_TaskList');
+        } else {
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_TaskList');
+        } 
     }
 
     public function edit(Request $request, UserInterface $user, Task $task, ManagerRegistry $doctrine){
