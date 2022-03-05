@@ -64,9 +64,9 @@ class TaskController extends AbstractController
             $task->setUser($user);
 
             $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($task);
             $entityManager->flush();
-        
+
             return $this->redirect(
                 $this->generateUrl('task_detail', ['id'=> $task->getId()])
             );
@@ -78,7 +78,11 @@ class TaskController extends AbstractController
         ]);
     }
 
-    public function edit(Request $request, UserInterface $user, Task $task){
+    public function delete(ManagerRegistry $doctrine){
+        $entityManager = $doctrine->getManager();
+    }
+
+    public function edit(Request $request, UserInterface $user, Task $task, ManagerRegistry $doctrine){
         #Si les credencials del usuari son diferents a la de la tasca, o be l'usuari no existeix retornara a la llista de tasques
         if (!$user || ($user->getId() != $task->getUser()->getId())){
             return $this->redirectToRoute('app_TaskList');
@@ -91,7 +95,7 @@ class TaskController extends AbstractController
                 $task->setCreatedAt(new \DateTime('now'));
                 $task->setUser($user);
 
-                $em=$this->getDoctrine()->getManager();
+                $em= $doctrine->getManager();
                 $em->persist($task);
                 $em->flush();
 

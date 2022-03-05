@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 use App\Form\RegisterType;
@@ -71,6 +72,23 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function myTasks(ManagerRegistry $doctrine, UserInterface $user){
+
+        $entityManager = $doctrine->getRepository(User::class);
+        $users = $entityManager->findAll();
+        $tasques = [];
+
+        foreach ($users as $dbUser) {
+            if ($dbUser->getId() == $user->getId()){
+                $tasques = $dbUser->getTasks();
+            }
+        }
+
+        return $this->render('user/mytasks.html.twig',[
+            'tasques' => $tasques
+        ]);
+
+    }
 
     public function logout() : void
     {
