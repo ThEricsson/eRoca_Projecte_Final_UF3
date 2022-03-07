@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Task
@@ -25,6 +26,7 @@ class Task
      * @var string|null
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank
      */
     private $title;
 
@@ -32,6 +34,7 @@ class Task
      * @var string|null
      *
      * @ORM\Column(name="content", type="text", length=65535, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank
      */
     private $content;
 
@@ -46,6 +49,12 @@ class Task
      * @var int|null
      *
      * @ORM\Column(name="hours", type="integer", nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern     = "/^[0-9]+$/i",
+     *     htmlPattern = "[0-9]+",
+     *     message = "Només es poden fer servir números."
+     * )
      */
     private $hours = NULL;
 

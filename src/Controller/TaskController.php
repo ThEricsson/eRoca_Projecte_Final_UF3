@@ -58,7 +58,7 @@ class TaskController extends AbstractController
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
 
             $task->setCreatedAt(new \DateTime('now'));
             $task->setUser($user);
